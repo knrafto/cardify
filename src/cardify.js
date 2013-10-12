@@ -130,17 +130,23 @@ function showQuote(status) {
 function makeCards(callback) {
   getFriends(function() {
     players = [];
-    var randomFriends =  [selectRandom(friends), selectRandom(friends)];
-    randomFriends.forEach(function(friend) {
-      generateCard(friend, function(card) {
-        players.push(card);
-        if (players.length === 2) {
-          callback();
-        }
-      });
-    });
+    addPlayer(callback);
   });
-};
+}
+
+function addPlayer(callback) {
+  var friend = selectRandom(friends);
+  generateCard(friend, function(card) {
+    if (card.quote) {
+      players.push(card);
+      if (players.length === 2) {
+        callback();
+        return;
+      }
+    }
+    addPlayer(callback);
+  });
+}
 
 function getFriends(callback) {
   FB.api('/me', { fields: "friends" }, function(response) {
