@@ -24,6 +24,7 @@ var players;
 var turn;
 
 var moves;
+var hpThemes;
 var categories = [
   { name: "Movies",
     calculateWeight: likeWeight("movies"),
@@ -81,10 +82,23 @@ function constantWeight(n) {
 
 function makeGenerateMove(category, card) {
   return function(enemy) {
+    var text, damage;
     if (Math.random() <= 0.15) {
-      return generateChanceMove(card, enemy);
+      text = generateChanceMove(card, enemy);
+    } else {
+      text = category.generateMove(card, enemy);
     }
-    return category.generateMove(card, enemy);
+    damage = selectWeightedRandom([
+      { item: 0,
+        weight: 2 },
+      { item: 1,
+        weight: 6 },
+      { item: 2,
+        weight: 2 }]);
+    return {
+      text: text,
+      damage: damage
+    };
   };
 }
 
@@ -134,17 +148,6 @@ function getFriends(callback) {
   });
 }
 
-function selectCombatants() {
-  var i, friend, results = [];
-  for (i = 0; i < 2; ++i) {
-    do {
-      friend = selectRandom(friends);
-    } while (friends.indexOf(results) !== -1);
-    results.push(friend);
-  }
-  return results;
-}
-
 function generateCard(friend, callback) {
   console.log("generating card...");
   var fields = [ "statuses.fields(message)",
@@ -192,6 +195,10 @@ function generateCard(friend, callback) {
     var category = selectWeightedRandom(weightedCategories);
     card.categoryName = category.name;
     card.generateMove = makeGenerateMove(category, card);
+
+    card.hp = 6;
+    card.hpTheme = hpThemes[selectRandom(["Sanity", "GPA", "Relationship"])];
+
     callback(card);
   });
 }
@@ -231,6 +238,7 @@ window.fbAsyncInit = function() {
   // API calls
   $.getJSON("data/moves.json", function(data) {
     moves = data.categories;
+    hpThemes = data.hp;
   });
 
   var scope = "friends_interests,friends_likes,friends_status,user_friends";

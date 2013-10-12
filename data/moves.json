@@ -107,28 +107,31 @@
     },
     "hp":{
         "Sanity":[
-            {"6":"Compteley together"},
-            {"5":"Slightly Off"},
-            {"4":"Social Outcast"},
-            {"3":"Legally Insane"},
-            {"2":"Homicidal Maniac"},
-            {"1":"Charlie Sheen on Bath Salts"}
+            "Dead",
+            "Charlie Sheen on Bath Salts",
+            "Homicidal Maniac",
+            "Legally Insane",
+            "Social Outcast",
+            "Slightly Off",
+            "Completely together"
         ],
         "GPA":[
-            {"6":"Perfect 4.0"},
-            {"5":"Studious bookworm"},
-            {"4":"B Student"},
-            {"3":"Barely passing"},
-            {"2":"Flunked"},
-            {"1":"Engineering Student"}
+            "Dead",
+            "Engineering Student",
+            "Flunked",
+            "Barely passing",
+            "B Student",
+            "Studious bookworm",
+            "Perfect 4.0"
         ],
         "Relationship":[
-            {"6":"Playboy/Playgirl"},
-            {"5":"Happily Married"},
-            {"4":"In a Relationship"},
-            {"3":"(It's Complicated)"},
-            {"2":"Single, ready to mingle"},
-            {"1":"Forever Alone"}
+            "Dead",
+            "Forever Alone",
+            "Single, ready to mingle",
+            "(It's Complicated)",
+            "In a Relationship",
+            "Happily Married",
+            "Playboy/Playgirl"
         ]
     }
 }
