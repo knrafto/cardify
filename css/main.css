@@ -1,9 +1,46 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Open Sans Light Italic'), local('OpenSansLight-Italic'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/PRmiXeptR36kaC0GEAetxh_xHqYgAV9Bl_ZQbYUxnQU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Sans Pro'), local('SourceSansPro-Regular'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v6/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format('woff');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v6/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format('woff');
+}
+
 body {
-  font-family: 'Esteban', serif;
+  font-family: 'Open Sans', serif;
 }
 
 h1, h2 {
-  font-family: 'Esteban', serif;
+  font-family: 'Open Sans', serif;
 }
 
 h2 {
@@ -42,7 +79,7 @@ a:hover {
   background-color:gray;
   height: 30px;
   width: 250px;
-  margin-left: 75px;
+  margin: 0px auto;
 }
 
 .attack_field {
@@ -54,20 +91,46 @@ a:hover {
 
 }
 
+.category {
+  border: 2px solid #CCC;
+  background-color: white;
+  height: 30px;
+  width: 300px;
+  font-family: 'Open Sans';
+  margin-top:10px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.quote {
+  height:260px;
+  background-color: gray;
+}
+
 .image_128 {
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
   background-color:gray;
   border:13px solid #3B5998;
   border-radius: 4px;
   margin: 0px auto;
-  width: 250px;
+  width: 350px;
   height: 250px;
   overflow: hidden;
 }
 
 .image_128 img {
   min-height: 250px;
-  min-width: 250px;
+  min-width: 350px;
+}
+
+.fb {
+  height:32px;
+  width:32px;
+}
+
+.fb img {
+  height:32px;
+  width:32px;
 }
 
 .fb-login-button {
