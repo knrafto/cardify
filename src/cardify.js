@@ -210,14 +210,20 @@ function generateCard(friend, callback) {
     card.generateMove = makeGenerateMove(category, card);
 
     card.hp = 6;
-    card.hpTheme = hpThemes[selectRandom(Object.keys(hpThemes))];
+    var hpThemeName = selectRandom(Object.keys(hpThemes));
+    card.hpTheme = {
+      name: hpThemeName,
+      labels: hpThemes[hpThemeName]
+    };
 
     callback(card);
   });
 }
 
 function enterGame() {
-  $(".jumbotron").slideUp();
+  $(".jumbotron").slideUp(function() {
+    $(".jumbotron").remove();
+  });
   $("#enter").fadeOut();
   $("#wrapper").fadeIn('slow');
   $("#logo").click(startGame);
@@ -240,25 +246,55 @@ function startGame() {
 function displayCard(selector, card) {
   $(selector)
     .find(".image_128")
-      .append($("<img>").attr("src", card.picture))
+      .empty().append($("<img>").attr("src", card.picture))
     .end()
     .find(".name_field")
-      .append($("<p>").text(card.name))
+      .empty().append($("<p>").text(card.name))
     .end()
     .find(".category")
-      .append($("<p>").text("Primary Type: " + card.categoryName))
+      .empty().append($("<p>").text("Primary Type: " + card.categoryName))
     .end()
     .find(".quote")
-      .append($("<p>").html(showQuote(card.quote)));
+      .empty().append($("<p>").html(showQuote(card.quote)))
+    .end()
+    .find('.status')
+      .text(card.hpTheme.name + ': ' + card.hpTheme.labels[card.hp])
+    .end()
+    .find('.progress-bar').css('width','100%');
 }
 
 function takeTurn() {
   var next = 1 - turn,
       move = players[turn].generateMove(players[next]);
-
-  console.log(move);
-
   players[next].hp = Math.max(0, players[next].hp - move.damage);
+  $('.messages').text(move.text);
+
+  if (turn == 0) {
+    $('.person.right').zIndex(1);
+    $('.person.left')
+    .css('position', 'relative')
+    .zIndex(102)
+    .transition({x:650,rotate:'14deg'},500)
+    .transition({x:0,rotate:'0deg'});
+    $('#rightProgress').css('width', (players[next].hp/6)*100 + "%");
+
+
+  }
+  else {
+    $('.person.left').zIndex(1);
+    $('.person.right')
+    .css('position', 'relative')
+    .zIndex(102)
+    .transition({x:-650,rotate:'-14deg'},500)
+    .transition({x:0,rotate:'0deg'});
+    $('#leftProgress').css('width', (players[next].hp/6)*100 + "%");
+  }
+
+  var card = players[next];
+  $('.status').eq(next).text(card.hpTheme.name + ': ' + card.hpTheme.labels[card.hp]);
+
+  
+
   if (!players[next].hp) {
     endGame();
   } else {
@@ -268,6 +304,7 @@ function takeTurn() {
 
 function endGame() {
   clearInterval(intervalId);
+  $('.btn.btn-default.fixed').show();
 }
 
 window.fbAsyncInit = function() {
@@ -318,4 +355,8 @@ $(document).ready(function() {
   $("#people_wrapper").hide();
   $("#wrapper").hide();
   $("#spinner_container").hide();
+  $('.btn.btn-default.fixed').click(function() {
+    $('.btn.btn-default.fixed').hide();
+    startGame();
+  });
 });

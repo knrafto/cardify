@@ -61,12 +61,15 @@ a:hover {
 
 
 .name_field {
-  background-color: #eee;
+  background-color: rgba(238,238,238,1);
   border-radius: 5px;
   margin: 0px auto;
 }
 
 
+.jumbotron{
+  width:100%;
+}
 
 .category {
   border: 2px solid #CCC;
@@ -86,6 +89,16 @@ a:hover {
   border-radius: 5px;
   background-color: #eee;
   padding: 10px;
+  overflow:hidden;
+}
+
+.messages {
+  font-size: 30px;
+
+  position:fixed;
+  left:20px;
+  bottom:20px;
+  margin:0px auto;
 }
 
 .image_128 {
@@ -155,65 +168,14 @@ a:hover {
   float: left;
 }
 
-#question {
-  display: none;
-}
-
-#whosaid {
-  font-size: 66pt;
-  text-align: left;
-  margin-bottom: 0;
-  padding-top: 0;
-  margin-top: 0;
-  display: none;
-}
-
-#quote_wrapper {
-  margin: 0 auto 80px;
-  text-align: center;
-}
-
-#quote {
-  width: auto;
-  margin: 0 auto;
-  background: rgba(0, 0, 255, 0.09);
-  min-height: 50px;
-  padding-bottom: 60px;
-  position: relative;
-  height: 100%;
-  padding: 20px 20px 60px 20px;
-}
-
-#quote p {
-  padding: 20px 20px 60px 20px;
-  font-size: 30pt;
-  font-family: 'Esteban', cursive;
-  text-align: justify;
-  margin: 0;
-  display: inline;
-}
-
-.quotes {
-  font-family: 'Esteban', cursive;
-  font-size: 99pt;
-  position: absolute;
-}
-.quotes.left {
-  top: -30pt;
-  left: -12pt;
-}
-.quotes.right {
-  right: -6pt;
-  bottom: -30pt;
-}
 
 
 
 #people_wrapper {
   margin: 0 auto;
   width: 1200px;
-  height: 900px;
-  margin-top: 120px;
+  height: 800px;
+  margin-top: 70px;
   position: relative;
   z-index: 100;
 }
@@ -273,9 +235,6 @@ a:hover {
 
 
 .person .front {
-  position: absolute;
-  top: 0;
-  left: 0;
   padding: 10px;
   height: 640px;
   width: 450px;
@@ -283,6 +242,7 @@ a:hover {
   border-radius: 16px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
   background: white;
+  
 }
 
 #wrapper, #footer {
