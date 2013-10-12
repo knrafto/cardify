@@ -19,8 +19,10 @@ function selectWeightedRandom(list) {
   return selectRandom(items);
 }
 
-var chanceEventChance = 0.15;
 var friends;
+var players;
+var turn;
+
 var moves;
 var categories = [
   { name: "Movies",
@@ -79,7 +81,7 @@ function constantWeight(n) {
 
 function makeGenerateMove(category, card) {
   return function(enemy) {
-    if (Math.random() <= chanceEventChance) {
+    if (Math.random() <= 0.15) {
       return generateChanceMove(card, enemy);
     }
     return category.generateMove(card, enemy);
@@ -110,15 +112,14 @@ function generateBetrayerMove(card, enemy) {
   return format(getMove("Betrayer"), card.name, enemy.name, friend.name);
 }
 
-function makeCards() {
+function makeCards(callback) {
   getFriends(function() {
-    combatants = selectCombatants();
-    var cards = [];
-    combatants.forEach(function(friend) {
+    players = [];
+    [selectRandom(friends), selectRandom(friends)].forEach(function(friend) {
       generateCard(friend, function(card) {
-        cards.push(card);
-        if (cards.length === 2) {
-          playGame(cards[0], cards[1]);
+        players.push(card);
+        if (players.length === 2) {
+          callback();
         }
       });
     });
@@ -195,10 +196,28 @@ function generateCard(friend, callback) {
   });
 }
 
-function playGame(player1, player2) {
-  console.log(player1);
-  console.log(player2);
-  console.log(player1.generateMove(player2))
+function startGame() {
+  turn = 0;
+  makeCards(function() {
+    console.log(players);
+  });
+}
+
+function takeTurn() {
+  var next = 1 - turn,
+      move = players[turn].generateMove(players[next]);
+  
+  console.log(move);
+  player[next].hp = Math.max(0, player[next].hp - move.damage);
+  if (!player[next].hp) {
+    endGame();
+  } else {
+    turn = next;
+  }
+}
+
+function endGame() {
+
 }
 
 window.fbAsyncInit = function() {
@@ -214,26 +233,29 @@ window.fbAsyncInit = function() {
     moves = data.categories;
   });
 
-  var scope = "friends_about_me,friends_actions.books," +
-              "friends_actions.music,friends_actions.news," +
-              "friends_actions.video,friends_activities," +
-              "friends_birthday,friends_education_history," +
-              "friends_events,friends_games_activity,friends_groups," +
-              "friends_hometown,friends_interests,friends_likes," +
-              "friends_location,friends_notes,friends_photo_video_tags," +
-              "friends_photos,friends_questions," +
-              "friends_relationship_details,friends_relationships,"
-              "friends_status,friends_subscriptions,friends_videos," +
-              "friends_website,friends_work_history,user_friends";
+  var scope = "friends_interests,friends_likes,friends_status,user_friends";
+  $('.fb-login-button').attr("data-scopes", scope);
 
-  FB.Event.subscribe('auth.authResponseChange', function(response) {
-    console.log(response.status);
-    if (response.status === 'connected') {
-      makeCards();
+  FB.getLoginStatus(function(response){
+    if(response.status === 'connected'){
+      $('.start').css('display', 'block');
+      $(".start").click(function(e){
+        $('.start').slideUp();
+        e.preventDefault();
+        startGame();
+      });
     } else {
-      FB.login(function(response) {
-        makeCards();
-      }, { scope: scope });
+      $('.fb-login-button').fadeIn();
+      FB.Event.subscribe('auth.login', function(response) {
+        console.log(response);
+        if (response.authResponse) {
+          $('.fb-login-button').fadeOut();
+          $('.start').slideUp();
+          startGame();
+        } else {
+          console.log('User cancelled login or did not fully authorize.');
+        }
+      });
     }
   });
 };
