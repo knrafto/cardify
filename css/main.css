@@ -76,9 +76,8 @@ a:hover {
 }
 
 .name_field {
-  background-color:gray;
-  height: 30px;
-  width: 250px;
+  background-color: #eee;
+  border-radius: 5px;
   margin: 0px auto;
 }
 
@@ -93,24 +92,28 @@ a:hover {
 
 .category {
   border: 2px solid #CCC;
+  border-radius: 5px;
   background-color: white;
-  height: 30px;
   width: 300px;
+  height: 30px;
   font-family: 'Open Sans';
   margin-top:10px;
+  margin-bottom:10px;
   margin-left:auto;
   margin-right:auto;
 }
 
 .quote {
   height:260px;
-  background-color: gray;
+  border-radius: 5px;
+  background-color: #eee;
+  padding: 10px;
 }
 
 .image_128 {
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
   background-color:gray;
-  border:13px solid #3B5998;
+  border:8px solid #3B5998;
   border-radius: 4px;
   margin: 0px auto;
   width: 350px;
