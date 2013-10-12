@@ -112,13 +112,19 @@ function generateTextMove(key) {
 }
 
 function generateStatusMove(card, enemy) {
-  var status = selectRandom(card.statuses);
-  return format(getMove("Status Updates"), card.name, status, enemy.name);
+  var message = selectRandom(card.statuses).message;
+  return format(getMove("Status Updates"), card.name, message, enemy.name);
 }
 
 function generateBetrayerMove(card, enemy) {
   var friend = selectRandom(friends);
   return format(getMove("Betrayer"), card.name, enemy.name, friend.name);
+}
+
+function showQuote(status) {
+  var d = new Date(status.updated_time);
+  return '"<i>' + status.message + '</i>" \u2014 ' +
+    d.toLocaleDateString();
 }
 
 function makeCards(callback) {
@@ -144,7 +150,7 @@ function getFriends(callback) {
 }
 
 function generateCard(friend, callback) {
-  var fields = [ "statuses.fields(message)",
+  var fields = [ "statuses.fields(message,updated_time)",
                  "movies.fields(name)",
                  "books.fields(name)",
                  "music.fields(name)",
@@ -174,7 +180,7 @@ function generateCard(friend, callback) {
       card.statuses = []
       response.statuses.data.forEach(function(status) {
         if (status.message) {
-          card.statuses.push(status.message);
+          card.statuses.push(status);
         }
       });
       card.quote = selectRandom(card.statuses);
@@ -237,7 +243,7 @@ function displayCard(selector, card) {
       .append($("<p>").text("Primary Type: " + card.categoryName))
     .end()
     .find(".quote")
-      .append($("<p>").text('"' + card.quote + '"'));
+      .append($("<p>").html(showQuote(card.quote)));
 }
 
 function takeTurn() {
