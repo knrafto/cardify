@@ -39,10 +39,19 @@ a:hover {
 }
 
 .name_field {
-	background-color:gray;
-	height: 30px;
-	width: 250px;
-	margin-left: 75px;
+  background-color:gray;
+  height: 30px;
+  width: 250px;
+  margin-left: 75px;
+}
+
+.attack_field {
+  border: 2px solid #3B5998;
+  background-color:gray;
+  height: 100px;
+  width: 300px;
+  margin-left:45px;
+
 }
 
 .image_128 {
@@ -143,7 +152,9 @@ a:hover {
   margin-top: 5px;
 }
 
-
+#facebook {
+  margin: 0px auto;
+}
 #spinner_container {
   height: 32px;
   padding: 16px;
@@ -157,7 +168,7 @@ a:hover {
 .spinner {
   background: url('../img/ajax-loader.gif') no-repeat center center;
   width: 32px;
-  height: 32px;
+  height: 300px;
   float: left;
 }
 
@@ -213,21 +224,7 @@ a:hover {
   bottom: -30pt;
 }
 
-#score {
-  width: 200px;
-  margin: 0 auto;
-  text-align: center;
-  display: none;
-}
-#score .right {
 
-}
-#score .total {
-
-}
-#score .percent {
-
-}
 
 #people_wrapper {
   margin: 0 auto;
@@ -255,11 +252,11 @@ a:hover {
 }
 
 
-.right {
-	margin-right: 150px;
-}
 .left {
-	margin-left: 150px;
+  margin-right: 150px;
+}
+.right {
+  margin-left: 150px;
 }
 
 
@@ -286,73 +283,14 @@ a:hover {
 
 
 
-.person .back, .person .front {
+.person .front {
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
 }
 
 
 
-.person .back {
-  -webkit-transform: rotateY(-180deg);
-  -webkit-transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
-  -moz-transform: rotateY(-180deg);
-  -moz-transform-style: preserve-3d;
-  -moz-backface-visibility: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 203px;
-  border: 1px solid #ccc;
-  box-shadow: 4px 4px 8px #ccc;
-  background: white;
-  width: 148px;
-}
 
-.person2 .back {
-  -webkit-transform: rotateY(-180deg);
-  -webkit-transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
-  -moz-transform: rotateY(-180deg);
-  -moz-transform-style: preserve-3d;
-  -moz-backface-visibility: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 203px;
-  border: 1px solid #ccc;
-  box-shadow: 4px 4px 8px #ccc;
-  background: white;
-  width: 148px;
-}
-
-.noflip .person .back {
-  display: none;
-}
-
-
-.person.yes .back {
-  box-shadow: 0 0 15px #cfc;
-}
-.person.no .back {
-  box-shadow: 0 0 15px #fcc;
-}
-
-
-.person .back h3 {
-  margin-top: 10px;
-}
-
-.person .back p {
-  padding: 15px;
-  margin: 0;
-}
-
-.person .back p.wrong {
-  padding-top: 50px;
-  display: none;
-}
 
 .person .front {
   position: absolute;
