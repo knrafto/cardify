@@ -1,12 +1,85 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-  <head>
-    <title>Cardify</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="src/cardify.js"></script>
-  </head>
-  <body>
-    <div id="fb-root"></div>
+
+<head>
+<script type="text/javascript" src="js/jquery.min.js" ></script>			<!-- Download all the files then link them where they are located--> 
+<script type="text/javascript" src="js/jquery-ui.min.js" ></script>
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/main.css"/> 
+<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+<script type="text/javascript" src='js/app.js'></script>
+<script type="text/javascript" src="src/cardify.js"></script>
+</head>
+
+<html>
+<body>
+
+<div class="jumbotron" align="center" styl=" ">
+	<h1>Welcome to Cardify!<p><small>Where all your dreams come true!</small></p></h1>
+</div>
+<div id="enter">
+<div id="fb-root"></div>
     <div class="fb-login-button" style="display:none">Login with Facebook</div>
-  </body>
+<div align="center" id="EnterButton">
+<button type = "button" class="btn btn-default btn-lg" onclick="enter()">Enter       <span class="glyphicon glyphicon-off"></span></button>
+</div>
+</div>
+
+<div id="wrapper">
+	
+	<div id="header">
+		<center><a href="javascript:fight()">
+		<img src="img/trueLogo.png" width="90px"/>
+		</a>
+		</center>
+		<h2>Press to start!<p><small>Where all your dreams come true!</small></p></h2>
+	</div>
+
+	<div id="spinner_container">
+		<div class="spinner"></div>
+		<p>Loading . . .</p>
+		</div>
+
+	
+
+<div id="people_wrapper">
+        <div class="person right">
+          <div class='front'>
+          	<div class="name_field">
+          	</div>
+            <div class='image_128'>
+            </div>
+            <h3></h3>
+          </div>
+          <div class='back'>
+            <h3></h3>
+            <p class='first'>
+            </p>
+            <p class="wrong">
+            </p>
+          </div>
+        </div>
+
+        <div class="person left">
+          <div class='front'>
+          <div class="name_field">
+          	</div>
+            <div class='image_128'>
+            </div>
+            <h3></h3>
+          </div>
+          <div class='back'>
+            <h3></h3>
+            <p class="first">
+            </p>
+            <p class="wrong">
+            </p>
+          </div>
+        </div>
+	</div>
+
+</div>
+
+</body>
+
 </html>
+

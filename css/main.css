@@ -1,0 +1,399 @@
+body {
+  font-family: 'Esteban', serif;
+}
+
+h1, h2 {
+  font-family: 'Esteban', serif;
+}
+
+h2 {
+  font-size: 30pt;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: #666;
+  border-bottom: 1px solid #ddd;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.start {
+  padding: 20px;
+  margin: 0 auto;
+  font-size: 30pt;
+  font-family: 'Rancho', cursive;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  background: #eee;
+  border-bottom: none;
+  display: none;
+}
+
+.start:hover {
+  background: #efefef;
+}
+
+.name_field {
+	background-color:gray;
+	height: 30px;
+	width: 250px;
+	margin-left: 75px;
+}
+
+.image_128 {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+  background-color:gray;
+  border:13px solid #3B5998;
+  border-radius: 4px;
+  margin: 0px auto;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+}
+
+.image_128 img {
+  min-height: 250px;
+  min-width: 250px;
+}
+
+.fb-login-button {
+  margin: 20px;
+  text-align: center;
+  display: none;
+}
+
+#header {
+  padding-top: 125px;
+}
+
+#stats {
+  display: none;
+}
+
+#stats .top {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 50px;
+}
+
+#stats h2 {
+  padding: 20px 40px 0 180px;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+#stats img {
+  float: left;
+  max-width: 150px;
+  max-height: 150px;
+}
+
+#stats ul li {
+  height: 50px;
+  margin-bottom: 10px;
+  list-style-type: none;
+  display: block;
+}
+
+
+#stats ul li .bar {
+  height: 50px;
+  width: 550px;
+  margin-left: 60px;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+#stats ul li .bar .score_text {
+  position: absolute;
+  width: 550px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+#stats ul li .bar .right {
+  background: #aaffa4;
+  height: 50px;
+}
+
+#stats ul li img {
+  float: left;
+  margin-right: 10px;
+  height: 50px;
+  width: 50px;
+}
+
+#loading {
+  width: 450px;
+  display: none;
+  margin: 0 auto;
+  padding-top: 150px;
+}
+
+#loading p {
+  padding: 0px 90px;
+  margin-top: 5px;
+}
+
+#spinner_container p {
+  padding: 0px 20px 0 52px;
+  margin-top: 5px;
+}
+
+
+#spinner_container {
+  height: 32px;
+  padding: 16px;
+  width: 240px;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 410px;
+}
+
+.spinner {
+  background: url('../img/ajax-loader.gif') no-repeat center center;
+  width: 32px;
+  height: 32px;
+  float: left;
+}
+
+#question {
+  display: none;
+}
+
+#whosaid {
+  font-size: 66pt;
+  text-align: left;
+  margin-bottom: 0;
+  padding-top: 0;
+  margin-top: 0;
+  display: none;
+}
+
+#quote_wrapper {
+  margin: 0 auto 80px;
+  text-align: center;
+}
+
+#quote {
+  width: auto;
+  margin: 0 auto;
+  background: rgba(0, 0, 255, 0.09);
+  min-height: 50px;
+  padding-bottom: 60px;
+  position: relative;
+  height: 100%;
+  padding: 20px 20px 60px 20px;
+}
+
+#quote p {
+  padding: 20px 20px 60px 20px;
+  font-size: 30pt;
+  font-family: 'Esteban', cursive;
+  text-align: justify;
+  margin: 0;
+  display: inline;
+}
+
+.quotes {
+  font-family: 'Esteban', cursive;
+  font-size: 99pt;
+  position: absolute;
+}
+.quotes.left {
+  top: -30pt;
+  left: -12pt;
+}
+.quotes.right {
+  right: -6pt;
+  bottom: -30pt;
+}
+
+#score {
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+  display: none;
+}
+#score .right {
+
+}
+#score .total {
+
+}
+#score .percent {
+
+}
+
+#people_wrapper {
+  margin: 0 auto;
+  width: 1200px;
+  height: 900px;
+  margin-top: 120px;
+  position: relative;
+  z-index: 100;
+}
+
+.person {
+  width: 450px;
+  text-align: center;
+  font-size: 14pt;
+  font-family: 'Esteban';
+  float: left;
+
+  -webkit-transform: rotate(0deg);
+  -webkit-transition: 0.25s linear;
+  -moz-transform: rotate(0deg);
+  -moz-transition: 0.25s linear;
+  color: #000;
+  height: 900px;
+  border: none;
+}
+
+
+.right {
+	margin-right: 150px;
+}
+.left {
+	margin-left: 150px;
+}
+
+
+.person h3 {
+  margin-top: 0px;
+  margin-bottom: 0;
+}
+
+
+
+.person:first-child {
+  margin-left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+}
+
+
+
+.person:hover {
+  text-decoration: none;
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+}
+
+
+
+.person .back, .person .front {
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+}
+
+
+
+.person .back {
+  -webkit-transform: rotateY(-180deg);
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-transform: rotateY(-180deg);
+  -moz-transform-style: preserve-3d;
+  -moz-backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 203px;
+  border: 1px solid #ccc;
+  box-shadow: 4px 4px 8px #ccc;
+  background: white;
+  width: 148px;
+}
+
+.person2 .back {
+  -webkit-transform: rotateY(-180deg);
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-transform: rotateY(-180deg);
+  -moz-transform-style: preserve-3d;
+  -moz-backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 203px;
+  border: 1px solid #ccc;
+  box-shadow: 4px 4px 8px #ccc;
+  background: white;
+  width: 148px;
+}
+
+.noflip .person .back {
+  display: none;
+}
+
+
+.person.yes .back {
+  box-shadow: 0 0 15px #cfc;
+}
+.person.no .back {
+  box-shadow: 0 0 15px #fcc;
+}
+
+
+.person .back h3 {
+  margin-top: 10px;
+}
+
+.person .back p {
+  padding: 15px;
+  margin: 0;
+}
+
+.person .back p.wrong {
+  padding-top: 50px;
+  display: none;
+}
+
+.person .front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  height: 640px;
+  width: 450px;
+
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: rotateY(0deg);
+  -moz-transform-style: preserve-3d;
+  -moz-backface-visibility: hidden;
+  -moz-transform: rotateY(0deg);
+  border: 15px solid #3B5998;
+  border-radius: 16px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+  background: white;
+}
+
+
+
+
+
+
+
+
+
+
+#wrapper, #footer {
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+#wrapper {
+  min-height: 550px;
+}
+
+#footer {
+  font-size: 10pt;
+  text-align: center;
+  margin: 40pt auto 30pt;
+}
