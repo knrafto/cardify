@@ -22,6 +22,7 @@ function selectWeightedRandom(list) {
 var friends;
 var players;
 var turn;
+var intervalId;
 
 var moves;
 var hpThemes;
@@ -141,7 +142,6 @@ function makeCards(callback) {
 };
 
 function getFriends(callback) {
-  console.log("getting friends...");
   FB.api('/me', { fields: "friends" }, function(response) {
     friends = response.friends.data;
     callback();
@@ -149,7 +149,6 @@ function getFriends(callback) {
 }
 
 function generateCard(friend, callback) {
-  console.log("generating card...");
   var fields = [ "statuses.fields(message)",
                  "movies.fields(name)",
                  "books.fields(name)",
@@ -219,6 +218,8 @@ function startGame() {
     $("#people_wrapper").fadeIn('slow');
     displayCard(".person.left", players[0]);
     displayCard(".person.right", players[1]);
+
+    intervalId = setInterval(takeTurn, 6000);
   });
 }
 
@@ -234,10 +235,10 @@ function displayCard(selector, card) {
 function takeTurn() {
   var next = 1 - turn,
       move = players[turn].generateMove(players[next]);
-  
+
   console.log(move);
+
   players[next].hp = Math.max(0, players[next].hp - move.damage);
-  console.log(players[next]);
   if (!players[next].hp) {
     endGame();
   } else {
@@ -246,7 +247,7 @@ function takeTurn() {
 }
 
 function endGame() {
-  console.log(players[turn].name + " wins");
+  clearInterval(intervalId);
 }
 
 window.fbAsyncInit = function() {
