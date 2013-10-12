@@ -1,0 +1,134 @@
+{
+    "categories":{
+        "Movies":[
+                "__ fired all lasers at __",
+                "__: I'm afraid I can't let you do that __",
+                "__ engaged __ in a passionate makeout session",
+                "__ showed __ his/her 50 shades of grey",
+                "__ gave __ dysentry",
+                "__ set a rabid Jason Statham onto __",
+                "__ made __ watch Dane Cook",
+                "__ beheaded __",
+                "__ excorsized__",
+                "__ taught __ a valuable life lesson",
+                "__ serenaded __",
+                "__ recomended Nickelback to __",
+                "__ shut down __'s government"
+        ],
+        "Music":[
+                "__ rocked __'s socks off",
+                "__ likes this band, __'s probably never heard of it",
+                "__ wub wub wub WUBUBUBUBUB'd __",
+                "__ dropped __",
+                "__ gave __ a good banjo strummin'",
+                "__ sang 'Baby' to __ for ten hours straight",
+                "__ went all Supa Hot Fire on __'s ass ",
+                "All __'s base are belong to __"
+        ],
+        "Books":[
+                "__ fired all lasers at __",
+                "__: I'm afraid I can't let you do that __",
+                "__ engaged __ in a passionate makeout session",
+                "__ showed __ his/her 50 shades of grey",
+                "__ gave __ dysentry",
+                "__ uncovered __'s conspiracy",
+                "__ made __ watch Dane Cook",
+                "__ beheaded __",
+                "__ excorsized __",
+                "__ taught __ a valuable life lesson",
+                "__ found __'s methods quite elementary",
+                "__ shut down __'s government"
+        ],
+        "Sports":[
+                "__ threw __ a curveball",
+                "__ struck out __",
+                "__ dunked __!",
+                "__ alley-ooped __!",
+                "__ airballed __!",
+                "__ sacked __!",
+                "__ intercepted __!",
+                "__ caused __ to fumble!",
+                "__ called off-sides on __",
+                "__ called foul play on __",
+                "__ faked an injury on __",
+                "__ brawled __",
+                "__ aced __",
+                "__ threw racket at __",
+                "__ lapped __"
+        ],
+        "Games":[
+                "__ fragged __",
+                "__ teabagged __",
+                "__ 6 pooled __",
+                "__ lied to __ about the cake",
+                "__ put __'s princess in another castle"
+        ],
+        "Betrayer":[
+                   "__ speared __'s body with __",
+                   "__ fooled __ using __ as a sexual decoy",
+                   "__ put a hit on __ using __",
+                   "__ introduced __ to __",
+                   "__ tried to hook __ up with __",
+                   "__ blew up __ using __ as an explosive"
+        ],
+        "Random":[
+                 "__ hurt __'s feelings",
+                 "__ mislead __ sexually",
+                 "__ threw a pig at __",
+                 "__ stole __'s pajamas",
+                 "__ took __'s last cookie",
+                 "__ gave __ a black eye with a chicken nugget",
+                 "__ told __ everything was fine when everything wasn't fine",
+                 "__ ripped out __'s still-beating heart and consumed it",
+                 "__ set fire to all of __'s undergarments",
+                 "__ tickled __",
+                 "__ sank __'s battleship"
+        ],
+        "Status Updates":[
+                 "__ yelled '__' at __"
+        ],
+        "Chance":[
+                 "__ is now single",
+                 "__ is now dating __",
+                 "__ broke up with __",
+                 "__ broke __'s heart",
+                 "__ added __ as Mother",
+                 "__ added __ as Father",
+                 "__ added __ as Sister",
+                 "__ added __ as Brother",
+                 "__ added __ as Daughter",
+                 "__ added __ as Son",
+                 "__ added __ as Great-Grandaunt",
+                 "__ liked his own status",
+                 "__ tagged __ as Nicolas Cage",
+                 "__ replied to Nigerian Prince",
+                 "__ added puberty to life events"
+        ]
+    },
+    "hp":{
+        "Sanity":[
+            {"6":"Compteley together"},
+            {"5":"Slightly Off"},
+            {"4":"Social Outcast"},
+            {"3":"Legally Insane"},
+            {"2":"Homicidal Maniac"},
+            {"1":"Charlie Sheen on Bath Salts"}
+        ],
+        "GPA":[
+            {"6":"Perfect 4.0"},
+            {"5":"Studious bookworm"},
+            {"4":"B Student"},
+            {"3":"Barely passing"},
+            {"2":"Flunked"},
+            {"1":"Engineering Student"}
+        ],
+        "Relationship":[
+            {"6":"Playboy/Playgirl"},
+            {"5":"Happily Married"},
+            {"4":"In a Relationship"},
+            {"3":"(It's Complicated)"},
+            {"2":"Single, ready to mingle"},
+            {"1":"Forever Alone"}
+        ]
+    }
+}

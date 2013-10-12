@@ -1,6 +1,6 @@
 function format(str) {
   [].slice.call(arguments, 1).forEach(function(replacement) {
-    str = str.replace(/___/, replacement);
+    str = str.replace(/__/, replacement);
   });
   return str;
 }
@@ -20,6 +20,7 @@ function selectWeightedRandom(list) {
 }
 
 var chanceEventChance = 0.15;
+var friends;
 var moves;
 var categories = [
   { name: "Movies",
@@ -42,12 +43,16 @@ var categories = [
     calculateWeight: likeWeight("sports"),
     generateMove: generateTextMove("Sports")
   },
+  { name: "Random",
+    calculateWeight: constantWeight(2),
+    generateMove: generateTextMove("Random")
+  },
   { name: "Status Updates",
-    calculateWeight: constantWeight(10),
+    calculateWeight: statusWeight(4),
     generateMove: generateStatusMove
   },
   { name: "Betrayer",
-    calculateWeight: constantWeight(5),
+    calculateWeight: constantWeight(2),
     generateMove: generateBetrayerMove
   }
 ];
@@ -56,6 +61,15 @@ function likeWeight(field) {
   return function(card) {
     if (!card[field]) return 0;
     return card[field].length;
+  };
+}
+
+function statusWeight(n) {
+  return function(card) {
+    if (card.statuses) {
+      return n;
+    }
+    return 0;
   };
 }
 
@@ -77,7 +91,7 @@ function getMove(key) {
 }
 
 function generateChanceMove(card, enemy) {
-  return format(getMove("chance"), card.name, enemy.name);
+  return format(getMove("Chance"), card.name, enemy.name);
 }
 
 function generateTextMove(key) {
@@ -88,18 +102,19 @@ function generateTextMove(key) {
 
 function generateStatusMove(card, enemy) {
   var status = selectRandom(card.statuses);
-  return format(getMove("Status Updates"), card.name, enemy.name, status);
+  return format(getMove("Status Updates"), card.name, status, enemy.name);
 }
 
 function generateBetrayerMove(card, enemy) {
-  //var friend = selectRandom(friends);
-  //return format(getMove("Betrayer"), card.name, enemy.name, friend.name);
+  var friend = selectRandom(friends);
+  return format(getMove("Betrayer"), card.name, enemy.name, friend.name);
 }
 
-function makeCard() {
-  getRandomFriends(2, function(friends) {
+function makeCards() {
+  getFriends(function() {
+    combatants = selectCombatants();
     var cards = [];
-    friends.forEach(function(friend) {
+    combatants.forEach(function(friend) {
       generateCard(friend, function(card) {
         cards.push(card);
         if (cards.length === 2) {
@@ -110,18 +125,23 @@ function makeCard() {
   });
 };
 
-function getRandomFriends(n, callback) {
+function getFriends(callback) {
   console.log("getting friends...");
   FB.api('/me', { fields: "friends" }, function(response) {
-    var i, friend, friends = response.friends.data, results = [];
-    for (i = 0; i < n; ++i) {
-      do {
-        friend = selectRandom(friends);
-      } while (friends.indexOf(results) !== -1);
-      results.push(friend);
-    }
-    callback(results);
+    friends = response.friends.data;
+    callback();
   });
+}
+
+function selectCombatants() {
+  var i, friend, results = [];
+  for (i = 0; i < 2; ++i) {
+    do {
+      friend = selectRandom(friends);
+    } while (friends.indexOf(results) !== -1);
+    results.push(friend);
+  }
+  return results;
 }
 
 function generateCard(friend, callback) {
@@ -149,11 +169,18 @@ function generateCard(friend, callback) {
 
     ["movies", "books", "music", "games"].forEach(addNames);
 
-    card.picture = response.picture.data.url;
-    card.statuses = response.statuses.data.map(function(status) {
-      return status.message;
-    });
-    card.quote = selectRandom(card.statuses);
+    if (response.picture) {
+      card.picture = response.picture.data.url;
+    }
+    if (response.statuses) {
+      card.statuses = []
+      response.statuses.data.forEach(function(status) {
+        if (status.message) {
+          card.statuses.push(status.message);
+        }
+      });
+      card.quote = selectRandom(card.statuses);
+    }
 
     var weightedCategories = categories.map(function(category) {
       return {
@@ -184,7 +211,7 @@ window.fbAsyncInit = function() {
   // Hack: assumes that getting JSON data is much faster than Facebook
   // API calls
   $.getJSON("data/moves.json", function(data) {
-    moves = data;
+    moves = data.categories;
   });
 
   var scope = "friends_about_me,friends_actions.books," +
@@ -202,10 +229,10 @@ window.fbAsyncInit = function() {
   FB.Event.subscribe('auth.authResponseChange', function(response) {
     console.log(response.status);
     if (response.status === 'connected') {
-      makeCard();
+      makeCards();
     } else {
       FB.login(function(response) {
-        makeCard();
+        makeCards();
       }, { scope: scope });
     }
   });
