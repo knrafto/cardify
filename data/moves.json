@@ -132,6 +132,15 @@
             "In a Relationship",
             "Happily Married",
             "Playboy/Playgirl"
+        ],
+        "Hunger":[
+            "Dead",
+            "Welp, time to resort to self-cannibalism",
+            "Ghandi-level fasting",
+            "Could eat a horse and its entire family",
+            "Belly rumbles",
+            "Slight hunger pangs",
+            "Nice and Full"
         ]
     }
 }
