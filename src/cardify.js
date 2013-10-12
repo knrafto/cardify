@@ -203,7 +203,17 @@ function generateCard(friend, callback) {
   });
 }
 
+function enterGame() {
+  $(".jumbotron").slideUp();
+  $("#enter").fadeOut();
+  $('#spinner_container').fadeIn();
+  $("#wrapper").fadeIn('slow');
+  $("#logo").click(startGame);
+}
+
 function startGame() {
+  $("#header").hide();
+  $("#people_wrapper").fadeIn('slow');
   turn = 0;
   makeCards(function() {
     console.log(players);
@@ -242,25 +252,17 @@ window.fbAsyncInit = function() {
     hpThemes = data.hp;
   });
 
-  var scope = "friends_interests,friends_likes,friends_status,user_friends";
-  $('.fb-login-button').attr("data-scopes", scope);
-
   FB.getLoginStatus(function(response){
     if(response.status === 'connected'){
-      $('.start').css('display', 'block');
-      $(".start").click(function(e){
-        $('.start').slideUp();
-        e.preventDefault();
-        startGame();
-      });
+      $("#enter-button").fadeIn();
+      $("#enter-button").click(enterGame);
     } else {
       $('.fb-login-button').fadeIn();
       FB.Event.subscribe('auth.login', function(response) {
         console.log(response);
         if (response.authResponse) {
           $('.fb-login-button').fadeOut();
-          $('.start').slideUp();
-          startGame();
+          enterGame();
         } else {
           console.log('User cancelled login or did not fully authorize.');
         }
@@ -277,3 +279,11 @@ window.fbAsyncInit = function() {
   js.src = "//connect.facebook.net/en_US/all.js";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+$(document).ready(function() {
+  var scope = "friends_interests,friends_likes,friends_status,user_friends";
+  $('.fb-login-button').attr("data-scopes", scope);
+  $("#people_wrapper").hide();
+  $("#wrapper").hide();
+  $("#spinner_container").hide();
+});

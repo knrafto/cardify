@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" />
 <link rel="stylesheet" type="text/css" href="css/main.css"/> 
 <script type="text/javascript" src="src/bootstrap.min.js" ></script>
-<script type="text/javascript" src='src/app.js'></script>
 <script type="text/javascript" src="src/cardify.js"></script>
 </head>
 
@@ -20,16 +19,15 @@
 <div id="fb-root"></div>
     <div class="fb-login-button" style="display:none">Login with Facebook</div>
 <div align="center" id="EnterButton">
-<button type = "button" class="btn btn-default btn-lg" onclick="enter()">Enter       <span class="glyphicon glyphicon-off"></span></button>
+<button type="button" id="enter-button" class="btn btn-default btn-lg" style="display:none">Enter       <span class="glyphicon glyphicon-off"></span></button>
 </div>
 </div>
 
 <div id="wrapper">
 	
 	<div id="header">
-		<center><a href="javascript:fight()">
-		<img src="img/trueLogo.png" width="90px"/>
-		</a>
+		<center>
+		<img id="logo" src="img/trueLogo.png" width="90px"/>
 		</center>
 		<h2>Press to start!<p><small>Where all your dreams come true!</small></p></h2>
 	</div>
