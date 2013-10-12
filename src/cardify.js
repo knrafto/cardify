@@ -223,7 +223,12 @@ function startGame() {
 }
 
 function displayCard(selector, card) {
-  $(selector).find(".image_128").append($("<img>").attr("src", card.picture));
+  $(selector)
+    .find(".image_128")
+      .append($("<img>").attr("src", card.picture))
+    .end()
+    .find(".name_field")
+      .append($("<p>").text(card.name));
 }
 
 function takeTurn() {
