@@ -302,7 +302,7 @@ window.fbAsyncInit = function() {
 
 $(document).ready(function() {
   var scope = "friends_interests,friends_likes,friends_status,user_friends";
-  $('.fb-login-button').attr("data-scopes", scope);
+  $('.fb-login-button').attr("data-scope", scope);
   $("#people_wrapper").hide();
   $("#wrapper").hide();
   $("#spinner_container").hide();
