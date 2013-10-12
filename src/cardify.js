@@ -156,7 +156,7 @@ function generateCard(friend, callback) {
                  "music.fields(name)",
                  "games.fields(name)",
                  "sports",
-                 "picture"
+                 "picture.type(large)"
                ]
   FB.api(friend.id, { fields: fields.join(",") }, function(response) {
     var card = {
@@ -206,18 +206,24 @@ function generateCard(friend, callback) {
 function enterGame() {
   $(".jumbotron").slideUp();
   $("#enter").fadeOut();
-  $('#spinner_container').fadeIn();
   $("#wrapper").fadeIn('slow');
   $("#logo").click(startGame);
 }
 
 function startGame() {
-  $("#header").hide();
-  $("#people_wrapper").fadeIn('slow');
   turn = 0;
+  $('#spinner_container').show();
   makeCards(function() {
-    console.log(players);
+    $('#spinner_container').hide();
+    $("#header").hide();
+    $("#people_wrapper").fadeIn('slow');
+    displayCard(".person.left", players[0]);
+    displayCard(".person.right", players[1]);
   });
+}
+
+function displayCard(selector, card) {
+  $(selector).find(".image_128").append($("<img>").attr("src", card.picture));
 }
 
 function takeTurn() {
