@@ -215,8 +215,9 @@ function takeTurn() {
       move = players[turn].generateMove(players[next]);
   
   console.log(move);
-  player[next].hp = Math.max(0, player[next].hp - move.damage);
-  if (!player[next].hp) {
+  players[next].hp = Math.max(0, players[next].hp - move.damage);
+  console.log(players[next]);
+  if (!players[next].hp) {
     endGame();
   } else {
     turn = next;
@@ -224,7 +225,7 @@ function takeTurn() {
 }
 
 function endGame() {
-
+  console.log(players[turn].name + " wins");
 }
 
 window.fbAsyncInit = function() {
