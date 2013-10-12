@@ -1,5 +1,8 @@
-function format(str, replacement) {
-  str.replace(/___/, replacement);
+function format(str) {
+  [].slice.call(arguments, 1).forEach(function(replacement) {
+    str = str.replace(/___/, replacement);
+  });
+  return str;
 }
 
 function selectRandom(list) {
@@ -16,29 +19,36 @@ function selectWeightedRandom(list) {
   return selectRandom(items);
 }
 
-var changeEventChance = 0.15;
+var chanceEventChance = 0.15;
 var moves;
 var categories = [
   { name: "Movies",
-    calculateWeight: likeWeight("movies")
+    calculateWeight: likeWeight("movies"),
+    generateMove: generateTextMove("Movies")
   },
   { name: "Books",
-    calculateWeight: likeWeight("books")
+    calculateWeight: likeWeight("books"),
+    generateMove: generateTextMove("Books")
   },
   { name: "Music",
-    calculateWeight: likeWeight("music")
+    calculateWeight: likeWeight("music"),
+    generateMove: generateTextMove("Music")
   },
   { name: "Games",
-    calculateWeight: likeWeight("games")
+    calculateWeight: likeWeight("games"),
+    generateMove: generateTextMove("Games")
   },
   { name: "Sports",
-    calculateWeight: likeWeight("sports")
+    calculateWeight: likeWeight("sports"),
+    generateMove: generateTextMove("Sports")
   },
   { name: "Status Updates",
-    calculateWeight: constantWeight(10)
+    calculateWeight: constantWeight(10),
+    generateMove: generateStatusMove
   },
   { name: "Betrayer",
-    calculateWeight: constantWeight(5)
+    calculateWeight: constantWeight(5),
+    generateMove: generateBetrayerMove
   }
 ];
 
@@ -55,30 +65,62 @@ function constantWeight(n) {
 
 function makeGenerateMove(category, card) {
   return function(enemy) {
-    if (Math.random() <= changeEventChange) {
+    if (Math.random() <= chanceEventChance) {
       return generateChanceMove(card, enemy);
     }
     return category.generateMove(card, enemy);
   };
 }
 
-function generateChangeMove(card, enemy) {
-  return selectRandom(moves['chance']).format(card.name, enemy.name);
+function getMove(key) {
+  return selectRandom(moves[key]);
+}
+
+function generateChanceMove(card, enemy) {
+  return format(getMove("chance"), card.name, enemy.name);
+}
+
+function generateTextMove(key) {
+  return function(card, enemy) {
+    return format(getMove(key), card.name, enemy.name);
+  };
+}
+
+function generateStatusMove(card, enemy) {
+  var status = selectRandom(card.statuses);
+  return format(getMove("Status Updates"), card.name, enemy.name, status);
+}
+
+function generateBetrayerMove(card, enemy) {
+  //var friend = selectRandom(friends);
+  //return format(getMove("Betrayer"), card.name, enemy.name, friend.name);
 }
 
 function makeCard() {
-  getRandomFriend(function(friend) {
-    generateCard(friend, function(card) {
-      displayCard(card);
+  getRandomFriends(2, function(friends) {
+    var cards = [];
+    friends.forEach(function(friend) {
+      generateCard(friend, function(card) {
+        cards.push(card);
+        if (cards.length === 2) {
+          playGame(cards[0], cards[1]);
+        }
+      });
     });
   });
 };
 
-// Note: only selects from first page of friends
-function getRandomFriend(callback) {
-  console.log("getting friend...");
+function getRandomFriends(n, callback) {
+  console.log("getting friends...");
   FB.api('/me', { fields: "friends" }, function(response) {
-    callback(selectRandom(response.friends.data));
+    var i, friend, friends = response.friends.data, results = [];
+    for (i = 0; i < n; ++i) {
+      do {
+        friend = selectRandom(friends);
+      } while (friends.indexOf(results) !== -1);
+      results.push(friend);
+    }
+    callback(results);
   });
 }
 
@@ -106,12 +148,12 @@ function generateCard(friend, callback) {
     }
 
     ["movies", "books", "music", "games"].forEach(addNames);
-    if (response.picture) {
-      card.picture = response.picture.data.url;
-    }
-    if (response.statuses) {
-      card.quote = selectRandom(response.statuses.data).message;
-    }
+
+    card.picture = response.picture.data.url;
+    card.statuses = response.statuses.data.map(function(status) {
+      return status.message;
+    });
+    card.quote = selectRandom(card.statuses);
 
     var weightedCategories = categories.map(function(category) {
       return {
@@ -126,8 +168,10 @@ function generateCard(friend, callback) {
   });
 }
 
-function displayCard(card) {
-  console.log(card);
+function playGame(player1, player2) {
+  console.log(player1);
+  console.log(player2);
+  console.log(player1.generateMove(player2))
 }
 
 window.fbAsyncInit = function() {
