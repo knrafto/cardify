@@ -74,7 +74,8 @@
 </div>
 <script>
 $('.person').on("click", function() {
-  $('.person.left').css('position', 'relative').css('z-index', 1010000).transition({x:650},400,'sharp').transition({x:0},500);
+  $('.person.left').css('position', 'relative').css('z-index', 1010000).transition({x:650,rotate:'14deg'},500).transition({x:0,rotate:'0 deg'},500,'ease');
+
 
 });
 </script>

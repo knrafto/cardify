@@ -58,22 +58,7 @@ a:hover {
   text-decoration: underline;
 }
 
-.start {
-  padding: 20px;
-  margin: 0 auto;
-  font-size: 30pt;
-  font-family: 'Rancho', cursive;
-  border-radius: 10px;
-  width: 400px;
-  text-align: center;
-  background: #eee;
-  border-bottom: none;
-  display: none;
-}
 
-.start:hover {
-  background: #efefef;
-}
 
 .name_field {
   background-color: #eee;
@@ -81,14 +66,7 @@ a:hover {
   margin: 0px auto;
 }
 
-.attack_field {
-  border: 2px solid #3B5998;
-  background-color:gray;
-  height: 100px;
-  width: 300px;
-  margin-left:45px;
 
-}
 
 .category {
   border: 2px solid #CCC;
@@ -126,15 +104,7 @@ a:hover {
   min-width: 350px;
 }
 
-.fb {
-  height:32px;
-  width:32px;
-}
 
-.fb img {
-  height:32px;
-  width:32px;
-}
 
 .fb-login-button {
   margin: 20px;
@@ -146,60 +116,7 @@ a:hover {
   padding-top: 125px;
 }
 
-#stats {
-  display: none;
-}
 
-#stats .top {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 50px;
-}
-
-#stats h2 {
-  padding: 20px 40px 0 180px;
-  margin-bottom: 0;
-  text-align: left;
-}
-
-#stats img {
-  float: left;
-  max-width: 150px;
-  max-height: 150px;
-}
-
-#stats ul li {
-  height: 50px;
-  margin-bottom: 10px;
-  list-style-type: none;
-  display: block;
-}
-
-
-#stats ul li .bar {
-  height: 50px;
-  width: 550px;
-  margin-left: 60px;
-  background: rgba(255, 0, 0, 0.1);
-}
-
-#stats ul li .bar .score_text {
-  position: absolute;
-  width: 550px;
-  text-align: center;
-  margin-top: 15px;
-}
-
-#stats ul li .bar .right {
-  background: #aaffa4;
-  height: 50px;
-}
-
-#stats ul li img {
-  float: left;
-  margin-right: 10px;
-  height: 50px;
-  width: 50px;
-}
 
 #loading {
   width: 450px;
@@ -335,8 +252,7 @@ a:hover {
 
 .person:first-child {
   margin-left: 0;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
+
 }
 
 
@@ -356,8 +272,6 @@ a:hover {
 
 
 
-
-
 .person .front {
   position: absolute;
   top: 0;
@@ -365,27 +279,11 @@ a:hover {
   padding: 10px;
   height: 640px;
   width: 450px;
-
-  -webkit-transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: rotateY(0deg);
-  -moz-transform-style: preserve-3d;
-  -moz-backface-visibility: hidden;
-  -moz-transform: rotateY(0deg);
   border: 15px solid #3B5998;
   border-radius: 16px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
   background: white;
 }
-
-
-
-
-
-
-
-
-
 
 #wrapper, #footer {
   margin: 0 auto;
