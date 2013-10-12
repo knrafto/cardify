@@ -63,17 +63,13 @@ var categories = [
 
 function likeWeight(field) {
   return function(card) {
-    if (!card[field]) return 0;
-    return card[field].length;
+    return card[field] ? card[field].length : 0;
   };
 }
 
 function statusWeight(n) {
   return function(card) {
-    if (card.statuses) {
-      return n;
-    }
-    return 0;
+    return card.statuses ? n : 0;
   };
 }
 
@@ -83,13 +79,11 @@ function constantWeight(n) {
 
 function makeGenerateMove(category, card) {
   return function(enemy) {
-    var text, damage;
-    if (Math.random() <= 0.15) {
-      text = generateChanceMove(card, enemy);
-    } else {
-      text = category.generateMove(card, enemy);
-    }
-    damage = selectWeightedRandom([
+    var text = Math.random() <= 0.15 ?
+        generateChanceMove(card, enemy) :
+        category.generateMove(card, enemy);
+
+    var damage = selectWeightedRandom([
       { item: 0,
         weight: 2 },
       { item: 1,
@@ -130,7 +124,8 @@ function generateBetrayerMove(card, enemy) {
 function makeCards(callback) {
   getFriends(function() {
     players = [];
-    [selectRandom(friends), selectRandom(friends)].forEach(function(friend) {
+    var randomFriends =  [selectRandom(friends), selectRandom(friends)];
+    randomFriends.forEach(function(friend) {
       generateCard(friend, function(card) {
         players.push(card);
         if (players.length === 2) {
@@ -183,6 +178,13 @@ function generateCard(friend, callback) {
         }
       });
       card.quote = selectRandom(card.statuses);
+    }
+
+    // why is this different from movies, books, music, and games?
+    if (response.sports) {
+      card.sports = response.sports.map(function(sport) {
+        return sport.name;
+      });
     }
 
     var weightedCategories = categories.map(function(category) {
