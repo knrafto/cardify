@@ -196,7 +196,7 @@ function generateCard(friend, callback) {
     card.generateMove = makeGenerateMove(category, card);
 
     card.hp = 6;
-    card.hpTheme = hpThemes[selectRandom(hpThemes.keys())];
+    card.hpTheme = hpThemes[selectRandom(Object.keys(hpThemes))];
 
     callback(card);
   });
