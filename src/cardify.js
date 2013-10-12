@@ -231,7 +231,13 @@ function displayCard(selector, card) {
       .append($("<img>").attr("src", card.picture))
     .end()
     .find(".name_field")
-      .append($("<p>").text(card.name));
+      .append($("<p>").text(card.name))
+    .end()
+    .find(".category")
+      .append($("<p>").text("Primary Type: " + card.categoryName))
+    .end()
+    .find(".quote")
+      .append($("<p>").text('"' + card.quote + '"'));
 }
 
 function takeTurn() {
